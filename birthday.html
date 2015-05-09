@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+<meta charset='UTF-8'><meta name="robots" content="noindex">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  position: fixed;
+  background: -webkit-radial-gradient(center, ellipse, #34679a 0%, #214163 47%, #0d1926 100%);
+  background: radial-gradient(ellipse at center, #34679a 0%, #214163 47%, #0d1926 100%);
+  color: #eef;
+  font-family: Comic Sans MS, cursive;
+  font-size: 5.6vmin;
+}
+
+.orbit, .trail {
+  width: 80vmin;
+  height: 80vmin;
+}
+
+.nucleus {
+  width: 24vmin;
+  height: 24vmin;
+}
+
+s {
+  width: 2vmin;
+  height: 2vmin;
+}
+
+#atom {
+  position: relative;
+  margin: auto;
+  padding-top: 10vmin;
+  padding-bottom: 10vmin;
+  width: 80vmin;
+  height: 80vmin;
+}
+
+#atom:before, #atom:after {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  line-height: 15vmin;
+  text-align: center;
+}
+#atom:before {
+  top: 0;
+  content: 'Оставайся энергичным ;)';
+}
+#atom:after {
+  bottom: 0;
+  content: 'С днем рождения, друже!';
+}
+
+.orbit {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: rotateX(80deg) rotateY(20deg);
+          transform: rotateX(80deg) rotateY(20deg);
+}
+
+.nucleus {
+  position: absolute;
+  background-color: #fff;
+  background-image: url(stas.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0) rotateX(-80deg) rotateY(0) rotateZ(-20deg);
+          transform: translate3d(-50%, -50%, 0) rotateX(-80deg) rotateY(0) rotateZ(-20deg);
+  box-shadow: 0 0 25px #fff;
+  -webkit-animation: nucleus_ 2s infinite linear;
+          animation: nucleus_ 2s infinite linear;
+  z-index: 999;
+}
+
+#orbit-2 {
+  -webkit-transform: rotateX(-80deg) rotateY(20deg);
+          transform: rotateX(-80deg) rotateY(20deg);
+}
+
+#orbit-3 {
+  -webkit-transform: rotateX(-70deg) rotateY(60deg);
+          transform: rotateX(-70deg) rotateY(60deg);
+}
+
+#orbit-4 {
+  -webkit-transform: rotateX(70deg) rotateY(60deg);
+          transform: rotateX(70deg) rotateY(60deg);
+}
+
+.trail {
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-animation: trail_ 2s infinite linear;
+          animation: trail_ 2s infinite linear;
+}
+
+s {
+  display: block;
+  position: absolute;
+  box-shadow: 0 0 12px #fff;
+  left: 50%;
+  -webkit-transform: translate3d(-100%, -100%, 0);
+          transform: translate3d(-100%, -100%, 0);
+  border-radius: 50%;
+  background-color: #aaf;
+  color: #fff;
+  text-decoration: none;
+  -webkit-animation: particle_ 2s infinite linear;
+          animation: particle_ 2s infinite linear;
+}
+
+#orbit-2 .trail,
+#orbit-2 s {
+  -webkit-animation-delay: -.5s;
+          animation-delay: -.5s;
+}
+
+#orbit-3 .trail,
+#orbit-3 s {
+  -webkit-animation-delay: -1s;
+          animation-delay: -1s;
+}
+
+#orbit-4 .trail,
+#orbit-4 s {
+  -webkit-animation-delay: -1.5s;
+          animation-delay: -1.5s;
+}
+
+@-webkit-keyframes trail_ {
+  from {
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+            transform: rotateZ(360deg);
+  }
+}
+
+@keyframes trail_ {
+  from {
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+            transform: rotateZ(360deg);
+  }
+}
+@-webkit-keyframes particle_ {
+  from {
+    -webkit-transform: rotateX(90deg) rotateY(0deg);
+            transform: rotateX(90deg) rotateY(0deg);
+  }
+  to {
+    -webkit-transform: rotateX(90deg) rotateY(-360deg);
+            transform: rotateX(90deg) rotateY(-360deg);
+  }
+}
+@keyframes particle_ {
+  from {
+    -webkit-transform: rotateX(90deg) rotateY(0deg);
+            transform: rotateX(90deg) rotateY(0deg);
+  }
+  to {
+    -webkit-transform: rotateX(90deg) rotateY(-360deg);
+            transform: rotateX(90deg) rotateY(-360deg);
+  }
+}
+@-webkit-keyframes nucleus_ {
+  0% {
+    box-shadow: 0 0 0 transparent;
+  }
+  50% {
+    box-shadow: 0 0 5vmin #fff;
+  }
+  100% {
+    box-shadow: 0 0 0 transparent;
+  }
+}
+@keyframes nucleus_ {
+  0% {
+    box-shadow: 0 0 0 transparent;
+  }
+  50% {
+    box-shadow: 0 0 5vmin #fff;
+  }
+  100% {
+    box-shadow: 0 0 0 transparent;
+  }
+}
+</style>
+</head>
+<body>
+<div id="atom">
+  <div id="orbit-1" class="orbit">
+    <div class="trail"><s></s></div>
+    <div class="nucleus"></div>
+  </div>
+
+  <div id="orbit-2" class="orbit">
+    <div class="trail"><s></s></div>
+  </div>
+
+  <div id="orbit-3" class="orbit">
+    <div class="trail"><s></s></div>
+  </div>
+
+  <div id="orbit-4" class="orbit">
+    <div class="trail"><s></s></div>
+  </div>
+</div>
+</body></html>
