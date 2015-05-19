@@ -424,25 +424,44 @@ function preLoad(tile) {
 
     var cache = new Image();
     cache.src = URL + "happy-" + row + "-" + col + ".jpeg";
-    cache.onload = onLoad.bind(tile);
+    cache.onload = onLoad.bind(null, tile);
 }
 
-function onLoad(e) {
-    this.querySelector("img").src = e.target.src;
-    this.addEventListener("mouseover", onHover);
-    this.addEventListener("touchstart", onHover);
-    this.className += " ready";
+function flip(tile) {
+    if (tile.className.indexOf("flip") === -1) {
+        tile.className += " flip";
+        return true;
+    }
+
+    return false;
+}
+
+function onLoad(tile, e) {
+    tile.querySelector("img").src = e.target.src;
+    tile.addEventListener("mouseover", onHover);
+    tile.className += " ready";
 }
 
 function onHover(e) {
-    if (this.className.indexOf("flip") === -1) {
-        this.className += " flip";
-        this.removeEventListener("mouseover", onHover);
+    var tile = this;
+
+    if (flip(tile)) {
+        tile.removeEventListener("mouseover", onHover);
     }
 }
 
 var tiles = [].slice.call(document.querySelectorAll(".tile"));
 tiles.forEach(preLoad);
+
+document.addEventListener('touchstart', function onTouchStart(e) {
+    e.preventDefault();
+    document.removeEventListener('touchstart', onTouchStart);
+
+    tiles.forEach(function (tile, index) {
+        setTimeout(flip, (index % 7) * 100 + (index % 2) * 50, tile);
+    });
+});
+
 }());
 </script>
 
