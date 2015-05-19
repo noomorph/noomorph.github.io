@@ -4,8 +4,447 @@
 <meta charset='UTF-8'><meta name="robots" content="noindex">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <style>
+html, body, img {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+  background: #222;
+}
+
+body {
+  width: 100vmin;
+  height: 100vmin;
+  margin: auto;
+  box-shadow: 0 0 10vmin silver;
+}
+
+body:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.tile {
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  position: relative;
+  float: left;
+  width: 12.5vmin;
+  height: 12.5vmin;
+  -webkit-transform-origin: 50% 50%;
+      -ms-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  -webkit-transition: -webkit-transform 1s, opacity 1s;
+          transition: transform 1s, opacity 1s;
+  -webkit-perspective: 500px;
+          perspective: 500px;
+
+  opacity: 0;
+}
+
+.tile.ready {
+  opacity: 1;
+}
+
+.tile[col="0"] {
+  clear: both;
+}
+
+.back, .front {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.back {
+  background-color: #d9a;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.tile:nth-child(3n) .back {
+  background-color: #d34;
+}
+
+.tile:nth-child(3n+1) .back {
+  background-color: #d67;
+}
+
+.tile.flip {
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+}
 </style>
 </head>
 <body>
+<div class="tile" row="0" col="0">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="0" col="1">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="0" col="2">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="0" col="3">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="0" col="4">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="0" col="5">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="0" col="6">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="0" col="7">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="1" col="0">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="1" col="1">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="1" col="2">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="1" col="3">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="1" col="4">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="1" col="5">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="1" col="6">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="1" col="7">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="2" col="0">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="2" col="1">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="2" col="2">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="2" col="3">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="2" col="4">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="2" col="5">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="2" col="6">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="2" col="7">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="3" col="0">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="3" col="1">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="3" col="2">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="3" col="3">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="3" col="4">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="3" col="5">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="3" col="6">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="3" col="7">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="4" col="0">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="4" col="1">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="4" col="2">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="4" col="3">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="4" col="4">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="4" col="5">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="4" col="6">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="4" col="7">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="5" col="0">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="5" col="1">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="5" col="2">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="5" col="3">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="5" col="4">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="5" col="5">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="5" col="6">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="5" col="7">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="6" col="0">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="6" col="1">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="6" col="2">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="6" col="3">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="6" col="4">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="6" col="5">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="6" col="6">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="6" col="7">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="7" col="0">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="7" col="1">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="7" col="2">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="7" col="3">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="7" col="4">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="7" col="5">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="7" col="6">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<div class="tile" row="7" col="7">
+    <div class="back"></div>
+    <img class="front" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+</div>
+
+<script type="text/javascript">
+(function main() {
+"use strict";
+
+var URL = ""; //"http://noomorph.github.io/birthday-moran/";
+
+function preLoad(tile) {
+    var row = tile.getAttribute("row");
+    var col = tile.getAttribute("col");
+
+    var cache = new Image();
+    cache.src = URL + "happy-" + row + "-" + col + ".jpeg";
+    cache.onload = onLoad.bind(tile);
+}
+
+function onLoad(e) {
+    this.querySelector("img").src = e.target.src;
+    this.addEventListener("mouseover", onHover);
+    this.addEventListener("touchstart", onHover);
+    this.className += " ready";
+}
+
+function onHover(e) {
+    if (this.className.indexOf("flip") === -1) {
+        this.className += " flip";
+        this.removeEventListener("mouseover", onHover);
+    }
+}
+
+var tiles = [].slice.call(document.querySelectorAll(".tile"));
+tiles.forEach(preLoad);
+}());
+</script>
+
 </body>
 </html>
