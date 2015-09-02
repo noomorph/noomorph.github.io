@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WeakMaps Usage</title>
+    <style>
+        body {
+            background: #333;
+            color: #eee;
+            font-family: monospace;
+        }
+
+        ul {
+            background: silver;
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            background: rgba(255, 0, 0, 0.5);
+            border-radius: 10px;
+            border: 1px solid;
+            color: black;
+            cursor: pointer;
+            display: inline-block;
+            height: 2em;
+            line-height: 2;
+            margin: 5px;
+            padding: 10px;
+        }
+
+        .highlight-prev {
+            box-shadow: 0 0 5px 5px red;
+        }
+
+        .highlight-next {
+            box-shadow: 0 0 5px 5px cyan;
+        }
+    </style>
+</head>
+<body onload="initialize()">
+    <p><em>Open the Memory tab in your browser.</em></p>
+    <p>
+        <button onclick="reorder()">Reorder Items</button>
+        <button onclick="memorize()">Rememorize</button>
+        <button onclick="sort()">Sort Items</button>
+    </p>
+    <ul id="list">
+    </ul>
+
+    <script src="memento.js"></script>
+    <script src="memento.demo.js"></script>
+</body>
+</html>

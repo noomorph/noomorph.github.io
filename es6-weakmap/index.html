@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  
+  
+</head>
+<body>
+<h1 id="weakmap-and-where-they-can-be-helpful">WeakMap and where they can be helpful</h1>
+<p>Besides introducing new syntax features, ES2015 (formerly ES6) has added a few extra collection types which are covered in <a href="https://hacks.mozilla.org/2015/06/es6-in-depth-collections/">the article on ES6 Collections from Mozilla Hacks</a>. I thought it would have been a good idea to supplement it with a few practical examples using WeakMap type.</p>
+<p>So, where WeakMaps can be useful?</p>
+<h2 id="privacy">1. Privacy</h2>
+<p>The new <em>class</em>'es don't have <em>private</em> access modifiers, one of known ways to hide their properties is to use WeakMap.</p>
+<p>Below is a sample Human.js module:</p>
+<div class="sourceCode" style="overflow-x: auto;"><pre class="sourceCode javascript"><code class="sourceCode javascript" style="white-space: pre;"><span class="kw" style="color: #007020; font-weight: bold;">var</span> privateFields <span class="op" style="color: #666666;">=</span> <span class="kw" style="color: #007020; font-weight: bold;">new</span> <span class="at" style="color: #7d9029;">WeakMap</span>()<span class="op" style="color: #666666;">;</span>
+
+<span class="kw" style="color: #007020; font-weight: bold;">class</span> Human <span class="op" style="color: #666666;">{</span>
+    <span class="at" style="color: #7d9029;">constructor</span>(firstName<span class="op" style="color: #666666;">,</span> lastName) <span class="op" style="color: #666666;">{</span>
+        <span class="va" style="color: #19177c;">privateFields</span>.<span class="at" style="color: #7d9029;">set</span>(<span class="kw" style="color: #007020; font-weight: bold;">this</span><span class="op" style="color: #666666;">,</span> <span class="op" style="color: #666666;">{</span> firstName<span class="op" style="color: #666666;">,</span> lastName <span class="op" style="color: #666666;">}</span>)<span class="op" style="color: #666666;">;</span>
+    <span class="op" style="color: #666666;">}</span>
+    get <span class="at" style="color: #7d9029;">fullName</span>() <span class="op" style="color: #666666;">{</span>
+        <span class="kw" style="color: #007020; font-weight: bold;">let</span> <span class="op" style="color: #666666;">{</span> firstName<span class="op" style="color: #666666;">,</span> lastName <span class="op" style="color: #666666;">}</span> <span class="op" style="color: #666666;">=</span> <span class="va" style="color: #19177c;">privateFields</span>.<span class="at" style="color: #7d9029;">get</span>(<span class="kw" style="color: #007020; font-weight: bold;">this</span>)<span class="op" style="color: #666666;">;</span>
+        <span class="cf" style="color: #007020; font-weight: bold;">return</span> <span class="vs" style="color: #4070a0;">`</span><span class="sc" style="color: #4070a0;">${</span>firstName<span class="sc" style="color: #4070a0;">}</span><span class="vs" style="color: #4070a0;"> </span><span class="sc" style="color: #4070a0;">${</span>lastName<span class="sc" style="color: #4070a0;">}</span><span class="vs" style="color: #4070a0;">`</span><span class="op" style="color: #666666;">;</span>
+    <span class="op" style="color: #666666;">}</span>
+<span class="op" style="color: #666666;">}</span>
+
+<span class="im">export</span> <span class="im">default</span> Human<span class="op" style="color: #666666;">;</span></code></pre></div>
+<p>So when an instance of <em>Human</em> class is created, it is impossible to access its <em>.firstName</em>, <em>.lastName</em> fields as it does not own them at all.</p>
+<div class="sourceCode" style="overflow-x: auto;"><pre class="sourceCode javascript"><code class="sourceCode javascript" style="white-space: pre;"><span class="im">import</span> Human <span class="im">from</span> <span class="st" style="color: #4070a0;">&#39;Human&#39;</span><span class="op" style="color: #666666;">;</span>
+
+<span class="kw" style="color: #007020; font-weight: bold;">var</span> sampleHuman <span class="op" style="color: #666666;">=</span> <span class="kw" style="color: #007020; font-weight: bold;">new</span> <span class="at" style="color: #7d9029;">Human</span>(<span class="st" style="color: #4070a0;">&#39;First&#39;</span><span class="op" style="color: #666666;">,</span> <span class="st" style="color: #4070a0;">&#39;Last&#39;</span>)<span class="op" style="color: #666666;">;</span>
+<span class="va" style="color: #19177c;">console</span>.<span class="at" style="color: #7d9029;">log</span>(<span class="va" style="color: #19177c;">sampleHuman</span>.<span class="at" style="color: #7d9029;">fullName</span>)<span class="op" style="color: #666666;">;</span> <span class="co" style="color: #60a0b0; font-style: italic;">// First Last</span>
+sampleHuman <span class="op" style="color: #666666;">=</span> <span class="kw" style="color: #007020; font-weight: bold;">null</span><span class="op" style="color: #666666;">;</span> <span class="co" style="color: #60a0b0; font-style: italic;">// here the magic happens </span></code></pre></div>
+<p>Notice that as soon as we lose reference to <em>sampleHuman</em>, the <em>privateFields</em> WeakMap also stops retaining key-value pair for that object. Take a look at memory snapshots before and after the <code style="white-space: pre;">sampleHuman = null</code>.</p>
+<p>This behaviour had been impossible until ES6 came, so in past you were limited to three options to avoid memory leaks:</p>
+<ol style="list-style-type: decimal">
+<li>give up and let the private fields be accesible from outside</li>
+</ol>
+<p>With the downside of exposing implementation details you'd rather conceal, in this case you'd get an obvious performance boost virtually in all browsers. See performance benchmark below.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>add a private ID property as a key and (alas) inevitable <em>.dispose()</em> method to keep the <em>privateFields</em> object clean and prevent the memory leak:</li>
+</ol>
+<div class="sourceCode" style="overflow-x: auto;"><pre class="sourceCode javascript"><code class="sourceCode javascript" style="white-space: pre;"><span class="kw" style="color: #007020; font-weight: bold;">var</span> Human <span class="op" style="color: #666666;">=</span> (<span class="kw" style="color: #007020; font-weight: bold;">function</span> () <span class="op" style="color: #666666;">{</span>
+    <span class="kw" style="color: #007020; font-weight: bold;">var</span> counter <span class="op" style="color: #666666;">=</span> <span class="dv" style="color: #40a070;">1</span><span class="op" style="color: #666666;">;</span>
+    <span class="kw" style="color: #007020; font-weight: bold;">var</span> privateFields <span class="op" style="color: #666666;">=</span> <span class="op" style="color: #666666;">{};</span>
+
+    <span class="kw" style="color: #007020; font-weight: bold;">function</span> <span class="at" style="color: #7d9029;">Human</span>(firstName<span class="op" style="color: #666666;">,</span> lastName) <span class="op" style="color: #666666;">{</span>
+        <span class="kw" style="color: #007020; font-weight: bold;">this</span>.<span class="at" style="color: #7d9029;">_id</span> <span class="op" style="color: #666666;">=</span> counter<span class="op" style="color: #666666;">++;</span>
+        privateFields[<span class="kw" style="color: #007020; font-weight: bold;">this</span>.<span class="at" style="color: #7d9029;">_id</span>] <span class="op" style="color: #666666;">=</span> <span class="op" style="color: #666666;">{</span>
+            <span class="dt" style="color: #902000;">firstName</span><span class="op" style="color: #666666;">:</span> firstName<span class="op" style="color: #666666;">,</span>
+            <span class="dt" style="color: #902000;">lastName</span><span class="op" style="color: #666666;">:</span> lastName
+        <span class="op" style="color: #666666;">};</span>
+    <span class="op" style="color: #666666;">}</span>
+
+    <span class="co" style="color: #60a0b0; font-style: italic;">/* ... */</span>
+
+    <span class="va" style="color: #19177c;">Human</span>.<span class="va" style="color: #19177c;">prototype</span>.<span class="at" style="color: #7d9029;">dispose</span> <span class="op" style="color: #666666;">=</span> <span class="kw" style="color: #007020; font-weight: bold;">function</span> () <span class="op" style="color: #666666;">{</span>
+        <span class="kw" style="color: #007020; font-weight: bold;">delete</span> privateFields[<span class="kw" style="color: #007020; font-weight: bold;">this</span>.<span class="at" style="color: #7d9029;">_id</span>]<span class="op" style="color: #666666;">;</span>
+        <span class="kw" style="color: #007020; font-weight: bold;">delete</span> <span class="kw" style="color: #007020; font-weight: bold;">this</span>.<span class="at" style="color: #7d9029;">_id</span><span class="op" style="color: #666666;">;</span>
+    <span class="op" style="color: #666666;">};</span>
+
+    <span class="cf" style="color: #007020; font-weight: bold;">return</span> Human<span class="op" style="color: #666666;">;</span>
+<span class="op" style="color: #666666;">}</span>())<span class="op" style="color: #666666;">;</span>
+
+Of course<span class="op" style="color: #666666;">,</span> the example above is not the only way to <span class="cf" style="color: #007020; font-weight: bold;">do</span> <span class="va" style="color: #19177c;">it</span>. <span class="at" style="color: #7d9029;">At</span> <span class="at" style="color: #7d9029;">least</span> <span class="at" style="color: #7d9029;">three</span> <span class="at" style="color: #7d9029;">more</span> <span class="at" style="color: #7d9029;">variants</span> <span class="at" style="color: #7d9029;">could</span> <span class="at" style="color: #7d9029;">be</span> <span class="at" style="color: #7d9029;">thought</span> <span class="at" style="color: #7d9029;">of</span><span class="op" style="color: #666666;">:</span>
+
+<span class="dv" style="color: #40a070;">1</span>) define a non<span class="op" style="color: #666666;">-</span>enumerable read<span class="op" style="color: #666666;">-</span>only ID property</code></pre></div>
+<pre><code style="white-space: pre;">
+2) point 1 plus use randomly generated property name (similar to ES6 _Symbol_)
+</code></pre>
+<pre><code style="white-space: pre;">
+3) store all created instances in private array and use index of _this_ in that array as an identifier
+</code></pre>
+<p>```</p>
+<p>But no matter what you do, you have to manually dispose the instances, otherwise <em>privateFields</em> variable will be retaining increasingly more memory with every instance you create.</p>
+<p>TODO: add screenshots of memory profiler</p>
+<p>Here are performance benchmarks for all the cases above.</p>
+<h2 id="decorating-objects-without-changing-or-composing-them">2. Decorating objects without changing or composing them</h2>
+<h3 id="dom">2.1. DOM</h3>
+<h3 id="dom-1">2.2. DOM</h3>
+<h2 id="polyfills-for-weakmap">Polyfills for WeakMap</h2>
+<p>The most efficient po</p>
+</body>
+</html>
