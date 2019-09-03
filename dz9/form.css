@@ -1,0 +1,118 @@
+body {
+    background: #000000ed;
+    color: #4a4949cf;
+    margin: 5%;
+}
+
+.form {
+    background: linear-gradient(-45deg, #012303, #3b3f6b);
+    border-radius: 5px;
+    height: 550px;
+    display: table-cell;
+    box-shadow: 0px 0px 15px #1f3cd2;
+    position: relative;
+    vertical-align: middle;
+}
+
+.box {
+    padding: 10px;
+    background: white;
+}
+
+input, select, label {
+    margin: 5px;
+    padding: 5px;
+    width: -webkit-fill-available;
+}
+
+span { color: red}
+
+.login, .firstname, .lastname { background: url(person.svg) right 5px center no-repeat; }
+.password { background: url(lock.svg) right 5px center no-repeat; }
+.email { background: url(mail.svg) right 5px center no-repeat; }
+.birthday { background: url(calendar.svg) right 5px center no-repeat; }
+.country, .city { background: url(milestone.svg) right 5px center no-repeat; }
+.phone { background: url(device-mobile.svg) right 5px center no-repeat;  }
+.summery { background: url(pencil.svg) right 5px center no-repeat; }
+
+.left {
+    float: left;
+    width: 50%;
+}
+
+.right {
+    float: right;
+    width: 50%;
+}
+
+.reset {
+    float: right;
+    margin: -5.5ch  3ch;
+    background: #8b8bce;
+    border: 2px solid #535377;
+    border-radius: 5px;
+}
+
+.submit {
+    position: absolute;
+    right: 3ch;
+    bottom: 2ch;
+    background: #4CAF50;
+    border: 2px solid #245026;
+    border-radius: 5px;
+    width: fit-content; /*мне нравится это значeние*/
+}
+
+.sex, .agree {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: white;
+  color: rgb(123, 123, 222);
+  box-sizing: content-box;
+  box-shadow: inset 0 0 0 2px currentColor;
+  cursor: pointer;
+  vertical-align: middle;
+  padding: 2px;
+  outline: none;
+}
+
+.agree { color: #30b135; }
+
+.sex:focus, .agree:focus {
+  box-shadow: 0 0 2px 2px currentColor,
+    inset 0 0 0 2px currentColor;
+}
+
+.sex:hover, .agree:hover {
+  box-shadow:
+    inset 0 0 0 2px currentColor,
+    inset 0 0 0 4px white,
+    inset 0 0 0 9px rgba(255, 255, 255, 0.5),
+    inset 0 0 0 9px currentColor;
+}
+
+.sex:focus:hover, .agree:focus:hover {
+  box-shadow:
+    0 0 2px 2px currentColor,
+    inset 0 0 0 2px currentColor,
+    inset 0 0 0 4px white,
+    inset 0 0 0 9px rgba(255, 255, 255, 0.5),
+    inset 0 0 0 9px currentColor;
+}
+
+.sex:checked, .agree:checked {
+  box-shadow:
+    inset 0 0 0 2px currentColor,
+    inset 0 0 0 4px white,
+    inset 0 0 0 9px currentColor;
+}
+
+.sex:checked:focus, .agree:checked:focus {
+  box-shadow:
+    0 0 2px 2px currentColor,
+    inset 0 0 0 2px currentColor,
+    inset 0 0 0 4px white,
+    inset 0 0 0 9px currentColor;
+}

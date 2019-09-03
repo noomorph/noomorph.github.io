@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Регистрация</title>
+	<link rel="stylesheet" href="form.css">
+</head>
+<body>
+	<form class="form" action="http://localhost:3000">
+				<button class="reset" type="reset">Сброс</button>
+		<div class="box">
+			<div class="left">
+					<label class="placeinput">
+						Введите свой логин<span>*</span><br>
+				<input required class="login" type="text" name="username" placeholder="Логин"></label><br>
+					<label class="placeinput">Введите свой пароль<span>*</span><br>
+				<input required class="password" type="text" name="password" placeholder="Пароль"></label><br>
+					<label class="placeinput"> свою фамилию<span>*</span><br>
+				<input required  class="lastname" type="text" name="lastname" placeholder="Фамилия"></label><br>
+					<label class="placeinput">Введите свое имя<span>*</span><br>
+				<input required class="firstname" type="text" name="firstname" placeholder="Имя"></label><br>
+				<label>Выберите пол<br>
+				<label><input type="radio" class="sex" name="sex"></label>
+					Женский<br>
+				<label><input type="radio" class="sex" name="sex"></label>
+					Мужской</label><br>
+			</div>
+			<div class="right">
+					<label>Введите дату рождения<br>
+				<input class="birthday" type="text" name="birthday" placeholder="чч/мм/гг"></label><br>
+					<label class="placeinput">Введите свой Емейл<span>*</span></label>
+				<input required type="email" class="email" placeholder="Емейл" pattern=".+@gmail.com"></label><br>
+					<label>Введите свою страну<br>
+				<input type="text" class="country" placeholder="Страна"></label><br>
+					<label>Введите свой город<br>
+				<input type="text" class="city" placeholder="Город"></label><br>
+					<label>Контактный номер<br>
+				<input type="tel" class="phone" name="phone" placeholder="Формат: +380..." pattern=""></label><br>
+				<select class="lang">
+					<option class="en">Английский</option>
+					<option class="ru">Русский</option>
+					<option class="kl">Клингонский</option>
+				</select>
+			</div>
+				<input class="summery" type="text" name="summery" placeholder="О себе"><br>
+				<label><input type="checkbox" class="agree">
+					Я разрешаю передавать мои
+					личные данные преподавателю<span>*</span></label><br>
+		</div>
+					<input class="submit" type="submit" name="submit" placeholder="Войти">
+	</form>
+</body>
+</html>
