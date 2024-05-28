@@ -1,0 +1,15 @@
+{
+  "tracks": [
+    {
+        "location":  "mt32midi/LSL1_2.MID",
+        "lib":  "mt32midi/LSL1.SYX",
+        "type":  "audio/midi-mt32",
+        "tonemap":  "MT",
+        "name":  "LOST WAGES",
+        "game":  "LEISURE SUIT LARRY 1",
+        "download":  "lsl1_2.zip",
+        "note1":  "",
+        "note2":  ""
+    }
+  ]
+}

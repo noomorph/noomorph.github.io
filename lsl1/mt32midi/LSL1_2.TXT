@@ -1,0 +1,45 @@
+
+                          SIERRA ON-LINE, INC.
+             3-D Animated Adventure Game Soundtrack Series
+          ====================================================
+          LEISURE SUIT LARRY IN THE LAND OF THE LOUNGE LIZARDS   
+                                                          
+
+                              "LOST WAGES"
+                              Chris Brayman
+                       "Larry Theme" by Al Lowe                
+          ====================================================
+            Copyright (c)1987, 1991 Sierra On-Line, Inc.     
+          ====================================================
+
+
+System Requirements:
+
+- MIDI Playback Software capable of reading Type 1 Standard
+    MIDI File format
+- System Exclusive patch bank utility (i.e. MidiEx, Cakewalk, etc.)
+- Roland MT-32, MT-100, CM-32L, CM-64, or LAPC-1
+- MPU-401 compatible MIDI interface
+  (Not required for LAPC-1 users.)
+
+
+
+This Standard MIDI File was recorded directly from Sierra's
+"Leisure Suit Larry 1" adventure game.  In order to obtain the proper
+sounds during playback, you must transmit the LSL1.SYX (SysEx) patch
+bank BEFORE loading this song file.  Failure to do this will result in
+improper playback of the song file.
+
+
+Converted to Standard MIDI File format by Tom Lewandowski.
+Address questions or comments to:
+
+     QUEST STUDIOS
+     tom+di@netnet.net
+     http://bayland.net/~tom+di/
+
+
+THE ROLAND MT-32 SOUND MODULE RESOURCE CENTER
+http://bayland.net/~tom+di/quest/roland.html
+
+
